@@ -1,0 +1,79 @@
+{
+  album:{
+    listeners:43978,
+    playcount:350644,
+    artist:100 gecs,
+    mbid:f9eb72dd-f075-4644-af3e-20be6ec7917c,
+    tracks:{
+      track:{
+        artist:{
+          url:https://www.last.fm/music/100+gecs,
+          name:100 gecs,
+          mbid:d6d45dda-2377-4faa-947b-e071efa085c0
+        },
+        @attr:{
+          rank:1
+        },
+        duration:131,
+        url:https://www.last.fm/music/100+gecs/sympathy+4+the+grinch/sympathy+4+the+grinch,
+        name:sympathy 4 the grinch,
+        streamable:{
+          fulltrack:0,
+          #text:0
+        }
+      }
+    },
+    url:https://www.last.fm/music/100+gecs/sympathy+4+the+grinch,
+    tags:{
+      tag:[
+        {
+          name:bubblegum bass,
+          url:https://www.last.fm/tag/bubblegum+bass
+        },
+        {
+          name:electronic,
+          url:https://www.last.fm/tag/electronic
+        },
+        {
+          name:hyperpop,
+          url:https://www.last.fm/tag/hyperpop
+        },
+        {
+          name:experimental,
+          url:https://www.last.fm/tag/experimental
+        },
+        {
+          name:noise pop,
+          url:https://www.last.fm/tag/noise+pop
+        }
+      ]
+    },
+    name:sympathy 4 the grinch,
+    image:[
+      {
+        size:small,
+        #text:https://lastfm.freetls.fastly.net/i/u/34s/ce4638fbf5ec83b008c073a633acce4d.jpg
+      },
+      {
+        size:medium,
+        #text:https://lastfm.freetls.fastly.net/i/u/64s/ce4638fbf5ec83b008c073a633acce4d.jpg
+      },
+      {
+        size:large,
+        #text:https://lastfm.freetls.fastly.net/i/u/174s/ce4638fbf5ec83b008c073a633acce4d.jpg
+      },
+      {
+        size:extralarge,
+        #text:https://lastfm.freetls.fastly.net/i/u/300x300/ce4638fbf5ec83b008c073a633acce4d.jpg
+      },
+      {
+        size:mega,
+        #text:https://lastfm.freetls.fastly.net/i/u/300x300/ce4638fbf5ec83b008c073a633acce4d.jpg
+      },
+      {
+        size:,
+        #text:https://lastfm.freetls.fastly.net/i/u/300x300/ce4638fbf5ec83b008c073a633acce4d.jpg
+      }
+    ]
+  }
+}
