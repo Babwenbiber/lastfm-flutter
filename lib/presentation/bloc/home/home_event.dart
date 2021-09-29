@@ -8,3 +8,8 @@ class HomeEventGetAlbums extends HomeEvent {
   @override
   List<Object?> get props => [];
 }
+
+class HomeEventRefresh extends HomeEvent {
+  @override
+  List<Object?> get props => [];
+}

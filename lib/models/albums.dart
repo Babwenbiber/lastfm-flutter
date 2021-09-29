@@ -1,4 +1,7 @@
+import 'dart:collection';
+
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:lastfm/models/album.dart';
 import 'package:lastfm/models/album_details.dart';

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:lastfm/models/albums.dart';
 import 'package:lastfm/presentation/pages/home_page.dart';
 import 'package:lastfm/utils/colors/app_colors.dart';
 import 'package:lastfm/utils/injection/injection_container.dart';
@@ -53,7 +54,8 @@ class _MyAppState extends State<MyApp> {
       onGenerateRoute: (settings) {
         return onGenerateRoute(settings, context);
       },
-      home: init ? HomePage() : CircularProgressIndicator(),
+      home: init ? 
+       HomePage() : CircularProgressIndicator(),
     );
   }
 }

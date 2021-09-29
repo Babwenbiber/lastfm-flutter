@@ -5,6 +5,8 @@ import 'package:equatable/equatable.dart';
 import 'package:lastfm/models/album_details.dart';
 import 'package:lastfm/repositories/lastfm_repository.dart';
 import 'package:lastfm/repositories/offline_repository.dart';
+import 'package:lastfm/usecase/add_to_favourites.dart';
+import 'package:lastfm/usecase/remove_from_favourites.dart';
 import 'package:lastfm/utils/error/failures.dart';
 import 'package:lastfm/utils/language/strings.dart';
 import 'package:lastfm/utils/shared_preferences/shared_preferences_helper.dart';
@@ -17,10 +19,14 @@ class AlbumDetailsBloc extends Bloc<AlbumDetailsEvent, AlbumDetailsState> {
   final LastfmRepository lastfmRepository;
   final OfflineRepository offlineRepository;
   final SharedPreferences preferences;
+  final AddToFavorites addToFavourites;
+  final RemoveFromFavorites removeFromFavorites;
   AlbumDetailsBloc({
     required this.lastfmRepository,
     required this.offlineRepository,
     required this.preferences,
+    required this.addToFavourites,
+    required this.removeFromFavorites,
   }) : super(AlbumDetailsInitial());
 
   @override
@@ -67,6 +73,7 @@ class AlbumDetailsBloc extends Bloc<AlbumDetailsEvent, AlbumDetailsState> {
       if (album == null) {
         yield AlbumDetailsError(SERVER_TIMEOUT_EXCEPTION_MSG);
       } else {
+        
         yield AlbumDetailsComplete(album, true);
       }
     });
@@ -75,7 +82,7 @@ class AlbumDetailsBloc extends Bloc<AlbumDetailsEvent, AlbumDetailsState> {
   Stream<AlbumDetailsState> mapSaveEventToState(
     AlbumDetailsEventSave event,
   ) async* {
-    final res = await offlineRepository.saveAlbumLocally(event.album);
+    final res = await addToFavourites(AddToFavoritesArgs(event.album));
     yield* res.fold((Failure failure) async* {
       yield AlbumDetailsError(failure.msg);
     }, (_) async* {});
@@ -84,7 +91,7 @@ class AlbumDetailsBloc extends Bloc<AlbumDetailsEvent, AlbumDetailsState> {
   Stream<AlbumDetailsState> mapRemoveEventToState(
     AlbumDetailsEventRemove event,
   ) async* {
-    final res = await offlineRepository.removeAlbumLocally(event.album);
+    final res = await removeFromFavorites(RemoveFromFavoritesArgs(event.album));
     yield* res.fold((Failure failure) async* {
       yield AlbumDetailsError(failure.msg);
     }, (_) async* {});
