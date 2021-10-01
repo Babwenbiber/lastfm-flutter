@@ -2,15 +2,17 @@
 // in lastfm/test/presentation/bloc/album_details_bloc_test.dart.
 // Do not manually edit this file.
 
-import 'dart:async' as _i4;
+import 'dart:async' as _i5;
 
 import 'package:dartz/dartz.dart' as _i2;
-import 'package:lastfm/models/album_details.dart' as _i6;
-import 'package:lastfm/models/albums.dart' as _i8;
-import 'package:lastfm/models/artists_details.dart' as _i7;
-import 'package:lastfm/repositories/lastfm_repository.dart' as _i3;
-import 'package:lastfm/repositories/offline_repository.dart' as _i9;
-import 'package:lastfm/utils/error/failures.dart' as _i5;
+import 'package:lastfm/models/album_details.dart' as _i7;
+import 'package:lastfm/models/albums.dart' as _i9;
+import 'package:lastfm/models/artists_details.dart' as _i8;
+import 'package:lastfm/repositories/lastfm_repository.dart' as _i4;
+import 'package:lastfm/repositories/offline_repository.dart' as _i3;
+import 'package:lastfm/usecase/add_to_favourites.dart' as _i10;
+import 'package:lastfm/usecase/remove_from_favourites.dart' as _i11;
+import 'package:lastfm/utils/error/failures.dart' as _i6;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: avoid_redundant_argument_values
@@ -23,38 +25,41 @@ import 'package:mockito/mockito.dart' as _i1;
 
 class _FakeEither_0<L, R> extends _i1.Fake implements _i2.Either<L, R> {}
 
+class _FakeOfflineRepository_1 extends _i1.Fake
+    implements _i3.OfflineRepository {}
+
 /// A class which mocks [LastfmRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLastfmRepository extends _i1.Mock implements _i3.LastfmRepository {
+class MockLastfmRepository extends _i1.Mock implements _i4.LastfmRepository {
   MockLastfmRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.Failure, _i6.AlbumDetails>> getAlbumDetails(
+  _i5.Future<_i2.Either<_i6.Failure, _i7.AlbumDetails>> getAlbumDetails(
           String? artistName, String? albumName) =>
       (super.noSuchMethod(
           Invocation.method(#getAlbumDetails, [artistName, albumName]),
-          returnValue: Future<_i2.Either<_i5.Failure, _i6.AlbumDetails>>.value(
-              _FakeEither_0<_i5.Failure, _i6.AlbumDetails>())) as _i4
-          .Future<_i2.Either<_i5.Failure, _i6.AlbumDetails>>);
+          returnValue: Future<_i2.Either<_i6.Failure, _i7.AlbumDetails>>.value(
+              _FakeEither_0<_i6.Failure, _i7.AlbumDetails>())) as _i5
+          .Future<_i2.Either<_i6.Failure, _i7.AlbumDetails>>);
   @override
-  _i4.Future<_i2.Either<_i5.Failure, _i7.ArtistsDetails>> searchArtists(
+  _i5.Future<_i2.Either<_i6.Failure, _i8.ArtistsDetails>> searchArtists(
           String? artistName) =>
       (super.noSuchMethod(Invocation.method(#searchArtists, [artistName]),
               returnValue:
-                  Future<_i2.Either<_i5.Failure, _i7.ArtistsDetails>>.value(
-                      _FakeEither_0<_i5.Failure, _i7.ArtistsDetails>()))
-          as _i4.Future<_i2.Either<_i5.Failure, _i7.ArtistsDetails>>);
+                  Future<_i2.Either<_i6.Failure, _i8.ArtistsDetails>>.value(
+                      _FakeEither_0<_i6.Failure, _i8.ArtistsDetails>()))
+          as _i5.Future<_i2.Either<_i6.Failure, _i8.ArtistsDetails>>);
   @override
-  _i4.Future<_i2.Either<_i5.Failure, _i8.Albums>> getTopAlbumsOfArtist(
+  _i5.Future<_i2.Either<_i6.Failure, _i9.Albums>> getTopAlbumsOfArtist(
           String? artistName) =>
       (super.noSuchMethod(
               Invocation.method(#getTopAlbumsOfArtist, [artistName]),
-              returnValue: Future<_i2.Either<_i5.Failure, _i8.Albums>>.value(
-                  _FakeEither_0<_i5.Failure, _i8.Albums>()))
-          as _i4.Future<_i2.Either<_i5.Failure, _i8.Albums>>);
+              returnValue: Future<_i2.Either<_i6.Failure, _i9.Albums>>.value(
+                  _FakeEither_0<_i6.Failure, _i9.Albums>()))
+          as _i5.Future<_i2.Either<_i6.Failure, _i9.Albums>>);
   @override
   String toString() => super.toString();
 }
@@ -62,39 +67,86 @@ class MockLastfmRepository extends _i1.Mock implements _i3.LastfmRepository {
 /// A class which mocks [OfflineRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockOfflineRepository extends _i1.Mock implements _i9.OfflineRepository {
+class MockOfflineRepository extends _i1.Mock implements _i3.OfflineRepository {
   MockOfflineRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.Failure, bool>> saveAlbumLocally(
-          _i6.AlbumDetails? album) =>
+  _i5.Future<_i2.Either<_i6.Failure, bool>> saveAlbumLocally(
+          _i7.AlbumDetails? album) =>
       (super.noSuchMethod(Invocation.method(#saveAlbumLocally, [album]),
-              returnValue: Future<_i2.Either<_i5.Failure, bool>>.value(
-                  _FakeEither_0<_i5.Failure, bool>()))
-          as _i4.Future<_i2.Either<_i5.Failure, bool>>);
+              returnValue: Future<_i2.Either<_i6.Failure, bool>>.value(
+                  _FakeEither_0<_i6.Failure, bool>()))
+          as _i5.Future<_i2.Either<_i6.Failure, bool>>);
   @override
-  _i4.Future<_i2.Either<_i5.Failure, bool>> removeAlbumLocally(
-          _i6.AlbumDetails? album) =>
+  _i5.Future<_i2.Either<_i6.Failure, bool>> removeAlbumLocally(
+          _i7.AlbumDetails? album) =>
       (super.noSuchMethod(Invocation.method(#removeAlbumLocally, [album]),
-              returnValue: Future<_i2.Either<_i5.Failure, bool>>.value(
-                  _FakeEither_0<_i5.Failure, bool>()))
-          as _i4.Future<_i2.Either<_i5.Failure, bool>>);
+              returnValue: Future<_i2.Either<_i6.Failure, bool>>.value(
+                  _FakeEither_0<_i6.Failure, bool>()))
+          as _i5.Future<_i2.Either<_i6.Failure, bool>>);
   @override
-  _i4.Future<_i2.Either<_i5.Failure, _i8.Albums>> getAlbumsLocally() =>
+  _i5.Future<_i2.Either<_i6.Failure, _i9.Albums>> getAlbumsLocally() =>
       (super.noSuchMethod(Invocation.method(#getAlbumsLocally, []),
-              returnValue: Future<_i2.Either<_i5.Failure, _i8.Albums>>.value(
-                  _FakeEither_0<_i5.Failure, _i8.Albums>()))
-          as _i4.Future<_i2.Either<_i5.Failure, _i8.Albums>>);
+              returnValue: Future<_i2.Either<_i6.Failure, _i9.Albums>>.value(
+                  _FakeEither_0<_i6.Failure, _i9.Albums>()))
+          as _i5.Future<_i2.Either<_i6.Failure, _i9.Albums>>);
   @override
-  _i4.Future<_i2.Either<_i5.Failure, _i6.AlbumDetails?>> getAlbumLocally(
+  _i5.Future<_i2.Either<_i6.Failure, _i7.AlbumDetails?>> getAlbumLocally(
           String? artistName, String? albumName) =>
       (super.noSuchMethod(
           Invocation.method(#getAlbumLocally, [artistName, albumName]),
-          returnValue: Future<_i2.Either<_i5.Failure, _i6.AlbumDetails?>>.value(
-              _FakeEither_0<_i5.Failure, _i6.AlbumDetails?>())) as _i4
-          .Future<_i2.Either<_i5.Failure, _i6.AlbumDetails?>>);
+          returnValue: Future<_i2.Either<_i6.Failure, _i7.AlbumDetails?>>.value(
+              _FakeEither_0<_i6.Failure, _i7.AlbumDetails?>())) as _i5
+          .Future<_i2.Either<_i6.Failure, _i7.AlbumDetails?>>);
+  @override
+  String toString() => super.toString();
+}
+
+/// A class which mocks [AddToFavorites].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockAddToFavorites extends _i1.Mock implements _i10.AddToFavorites {
+  MockAddToFavorites() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i3.OfflineRepository get offlineRepository =>
+      (super.noSuchMethod(Invocation.getter(#offlineRepository),
+          returnValue: _FakeOfflineRepository_1()) as _i3.OfflineRepository);
+  @override
+  _i5.Future<_i2.Either<_i6.Failure, bool>> call(
+          _i10.AddToFavoritesArgs? args) =>
+      (super.noSuchMethod(Invocation.method(#call, [args]),
+              returnValue: Future<_i2.Either<_i6.Failure, bool>>.value(
+                  _FakeEither_0<_i6.Failure, bool>()))
+          as _i5.Future<_i2.Either<_i6.Failure, bool>>);
+  @override
+  String toString() => super.toString();
+}
+
+/// A class which mocks [RemoveFromFavorites].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockRemoveFromFavorites extends _i1.Mock
+    implements _i11.RemoveFromFavorites {
+  MockRemoveFromFavorites() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i3.OfflineRepository get offlineRepository =>
+      (super.noSuchMethod(Invocation.getter(#offlineRepository),
+          returnValue: _FakeOfflineRepository_1()) as _i3.OfflineRepository);
+  @override
+  _i5.Future<_i2.Either<_i6.Failure, bool>> call(
+          _i11.RemoveFromFavoritesArgs? args) =>
+      (super.noSuchMethod(Invocation.method(#call, [args]),
+              returnValue: Future<_i2.Either<_i6.Failure, bool>>.value(
+                  _FakeEither_0<_i6.Failure, bool>()))
+          as _i5.Future<_i2.Either<_i6.Failure, bool>>);
   @override
   String toString() => super.toString();
 }

@@ -25,4 +25,7 @@ class RemoveFromFavoritesArgs extends UseCaseArgs {
   final AlbumDetails album;
 
    RemoveFromFavoritesArgs(this.album);
+
+  @override
+  List<Object?> get props => [album];
 }
